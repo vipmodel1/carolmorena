@@ -822,6 +822,50 @@
   </div>
 </div>
 
+    <script>
+(() => {
+  const COLOR = "#229ed9";
+
+  // 1) Pinta o ÍCONE (pega o SVG que abre a modal)
+  const icon =
+    document.querySelector('svg[data-bs-target="#langModal"]') ||
+    document.querySelector('[data-bs-target="#langModal"] svg') ||
+    document.querySelector('#langIcon');
+
+  if (icon) {
+    icon.style.color = COLOR;     // funciona com fill="currentColor"
+    icon.style.cursor = "pointer";
+  }
+
+  // 2) Injeta CSS só pra essa modal (sem mexer no resto do site)
+  const css = `
+    #langModal .modal-header{
+      background:${COLOR} !important;
+      color:#fff !important;
+    }
+    #langModal .btn-close{
+      filter: invert(1) !important;
+    }
+    #langModal .modal-content{
+      border: 1px solid ${COLOR} !important;
+    }
+    #langModal .btn{
+      border-color:${COLOR} !important;
+      color:${COLOR} !important;
+    }
+    #langModal .btn:hover{
+      background:${COLOR} !important;
+      color:#fff !important;
+    }
+  `;
+
+  const style = document.createElement("style");
+  style.textContent = css;
+  document.head.appendChild(style);
+})();
+</script>
+
+
 </body>
 
 </html>
